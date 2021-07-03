@@ -15,7 +15,6 @@ import com.service.SchoolService;
 public class MainController {
 	
 	@Autowired
-	SchoolDTO dto;
 	SchoolService service;
 	
 	@RequestMapping("/")
