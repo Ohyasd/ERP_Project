@@ -11,7 +11,7 @@
 <mvc:annotation-driven></mvc:annotation-driven><!-- mvc기본태그 -->
 <mvc:default-servlet-handler/><!-- mvc기본태그 -->
 <!-- 직접 주소요청시 처리 페이지 등록 부분 -->
-<mvc:view-controller path="/" view-name="main"/><!-- main.jsp => mainController에서 처리 -->
+
 
 <!-- controller 등록 부분 -->
 <!-- @Controller, @Service, @Repository, @Component 자동 빈등록, @Autowired 활성화 -->
