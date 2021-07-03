@@ -6,20 +6,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.dto.MemberDTO;
+import com.dto.SchoolDTO;
 
 @Repository
-public class MemberDAO {
-
+public class SchoolDAO {
 	@Autowired
-	SqlSessionTemplate template;
+	SqlSessionTemplate session;
 
-	public List<MemberDTO> memberselect() {
+	public List<SchoolDTO> select() {
 		// TODO Auto-generated method stub
-		List<MemberDTO> dto=template.selectList("memberselect");
-		return dto;
+		List<SchoolDTO> list=session.selectList("select");
+ 		return list;
 	}
-	
-	
-	
 }

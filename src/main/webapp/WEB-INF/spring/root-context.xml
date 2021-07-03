@@ -4,10 +4,11 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		<!-- 1.jdbc.properties -->
+	
+	<!-- 1.jdbc.properties -->
 	<context:property-placeholder location="classpath:com/config/jdbc.properties"/>
 	<!-- 2.DBCP2 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -16,23 +17,25 @@
 		<property name="username" value="${oracle.userid}"></property>
 		<property name="password" value="${oracle.passwd}"></property>
 	</bean>
+	
 	<!-- transaction의 시작 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	   <property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/><!-- tx어노테이션 활성화 -->
 	<!-- transaction처리 끝 -->
+	
 	<!--3.SqlSessionFactoryBean  -->
 	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:com/config/MemberMapper.xml</value>				
+				<value>classpath:com/config/SchoolMapper.xml</value>
 			</list>		
 		</property>
 		<property name="typeAliases">
 			<list>
-				<value>com.dto.MemberDTO</value>				
+				<value>com.dto.SchoolDTO</value>
 			</list>		
 		</property>
 	</bean>	
@@ -42,6 +45,5 @@
 	</bean>
 	<!-- 종료 -->	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
 </beans>
 

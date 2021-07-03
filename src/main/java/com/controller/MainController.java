@@ -7,19 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.dto.MemberDTO;
-import com.service.MemberService;
+import com.dto.SchoolDTO;
+import com.service.SchoolService;
+
 
 @Controller
 public class MainController {
 	
 	@Autowired
-	MemberService service;
-
+	SchoolDTO dto;
+	SchoolService service;
+	
 	@RequestMapping("/")
 	public String main() {
-		List<MemberDTO> dto=service.memberselect();
-		System.out.println("받은 값"+dto);
+		List<SchoolDTO> list = service.select();
+		System.out.println(list);
 		return "main";
 	}
 }
