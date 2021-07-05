@@ -1,6 +1,6 @@
+
+
 package com.controller;
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,18 @@ import com.service.SchoolService;
 
 @Controller
 public class MainController {
-	
-	@Autowired
-	SchoolService service;
-	
-	@RequestMapping("/")
-	public String main() {
-		List<SchoolDTO> list = service.select();
-		System.out.println(list);
-		return "main";
-	}
+   
+   @Autowired
+   SchoolService service;
+   
+   @RequestMapping("/")
+   public String main() {
+      
+	    List<SchoolDTO> list = service.select();
+	    System.out.println("받아온값======="+list);
+      return "staff_search_form";
+      
+   }
+   
 }
+    
