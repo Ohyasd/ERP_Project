@@ -9,80 +9,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
-$('#enter').click(function() {
-
-var tech2="";		
-
-$("input[id=tech]:checked").each(function() {
-
-	tech2 += $(this).val();
-
-});
-
-System.out.println("기술들========="+tech2);
-
-$.ajax({
-
-	url:'insert',
-
-    type:'post',
-
-    data:{'tech2':tech2},
-
-    success:function(data){
-
-    }
-
-});
-});
-/* $(document.ready(function(){
-	$("#enter").click(function(){
-		if($("#name").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		
-		if($("#jumun1").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		
-		if($("#jumin2").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		
-		if($("#school").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		
-		if($("#department").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		if($("#date").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-		
-		if($("#tech").val().length==0){
-			alert("이름을 입력하세요");
-			$("#name").focus();
-			return false;
-		}
-	})
-})); */
+function submit() {
+	 
+	     var name = document.getElementById("name").value;
+	     var jumin1 =document.getElementById("jumin1").value;
+	     var jumin2 =document.getElementById("jumin2").value;
+	
+	  if (name == ""){
+	    alert("아이디쳐");
+	    return false;
+	  }if(jumin1==""){
+		  alert("주민버노 쳐");
+		  return false;
+	  }if(jumin2==""){
+		  alert("주번2쳐");
+		  return false;
+	  }
+	 
+	  else{
+		  location.href= "/insert?name="+name+"?jumin1="+jumin1+"?jumin2="+jumin2;
+		  
+	  }
+	  
+	}
+	
 </script>
 <body>
-<form action="insert" method="post">
+
 <table border="1" >
 <thead>
   <tr>
@@ -139,10 +92,11 @@ $.ajax({
 </table>
 <div class="buttonaaa" style="margin-top:10px;">
 
-<button id="enter">등록</button>
+<button id="enter" onclick="submit()" >등록</button>
 
  <button id="reset" type="reset" >초기화</button>
+ 
 </div>
-</form>
+
 </body>
 </html>

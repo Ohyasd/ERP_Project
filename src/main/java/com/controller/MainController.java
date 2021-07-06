@@ -53,7 +53,7 @@ public class MainController {
    
    @RequestMapping(value="/insert",method=RequestMethod.POST) //회원등록 코드
 	 String insert(String name,String jumin1,String jumin2,int department,int school,int
-	 tech,String  date)
+	 tech,String date)
 	  { 
 	   
 	   HashMap<Object, Object> map = new HashMap<Object, Object>();
