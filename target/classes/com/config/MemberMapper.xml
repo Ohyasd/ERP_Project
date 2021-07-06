@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	<select id="memeberselect" resultType="MemberDTO">
+	select staff_no 번호,staff_name 이름,
+    CASE
+        WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
+        WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
+    END 성별,
+    cd.department_name 부서,st.graduate_day 졸업일
+FROM staff st,code_department cd where st.department_code=cd.department_code and st.staff_name=#{name} and
+st.staff_num=#{tech} and st.department_code=#{department} and st.school_code=#{school}  and st.graduate_day=#{date};
+	</select>
+	
+	<insert id="memberinsert" parameterType="map"> <!-- 멤버정보 insert문 -->
+	insert into 
+	staff(staff_no,staff_name,jumin_no,school_code,department_code,graduate_day)
+     values (STAFF_SEQ.nextval,#{name},#{jumin1}||'-'||#{jumin2},#{school},#{department},#{date})
+	</insert>
+	
+	<select id="selectbystaffno" parameterType="string" resultType="int">
+	select staff_no from staff where staff_name=#{name}
+	</select>
+	
+	<insert id="staffskillinsert" parameterType="map">
+	insert into 
+	staff_skill(staff_skill_no,staff_no,skill_code)
+	values (STAFF_SKILL_SEQ.nextval,#{staffno},#{tech})
+	</insert>
+</mapper>
