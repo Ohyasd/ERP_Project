@@ -19,11 +19,6 @@ function submit() {
 	     var department=$("#department").val();
 	     var tech=$("input:checkbox[id='tech']:checked").val();
 	     var school=$("input:checkbox[id='school']:checked").val();
-	    
-	     console.log(typeof tech);
-	     console.log(typeof school);
-	     console.log(typeof jumin1);
-	     
 	
 	  if (name == ""){
 	    alert("이름을 입력해주세요");
@@ -53,7 +48,7 @@ function submit() {
 	  else{
 		  $.ajax({
 		        type: "post", 
-		        url: "insert",
+		        url: "",
 		        data : {
 					name : name,
 					jumin1 : jumin1,
@@ -82,7 +77,7 @@ function submit() {
 <table border="1" >
 <thead>
   <tr>
-    <th colspan="6">사원 정보 등록</th>
+    <th colspan="6">사원 정보 수정</th>
   </tr>
 </thead>
 <tbody>
@@ -135,8 +130,8 @@ function submit() {
 </table>
 <div class="buttonaaa" style="margin-top:10px;">
 
-<button id="enter" onclick="submit()" >등록</button>
- <button id="reset" type="reset" >초기화</button>
+<button id="enter" onclick="submit()" >수정</button>
+ <button id="reset" type="reset" >삭제</button>
  
 </div>
 

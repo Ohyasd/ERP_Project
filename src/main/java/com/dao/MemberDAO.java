@@ -38,7 +38,22 @@ public class MemberDAO {
 
 
 	public List<MemberDTO> memberselect(HashMap<Object, Object> map) {
-		List<MemberDTO> list=session.selectList("memeberselect",map);
+		List<MemberDTO> list=session.selectList("memberselect",map);
+		return list;
+	}
+
+
+
+	public List<MemberDTO> selectall() {
+		List<MemberDTO> list=session.selectList("selectall");
+		return list;
+	}
+
+
+
+	public List<MemberDTO> updatemember(String num) {
+		// TODO Auto-generated method stub
+		List<MemberDTO> list=session.selectList("updatemember",num);
 		return list;
 	}
 }

@@ -42,4 +42,19 @@ public class MemberService {
 		List<MemberDTO> list=dao.memberselect(map);
 		return list;
 	}
+
+
+
+	public List<MemberDTO> selectall() {
+		List<MemberDTO> list=dao.selectall();
+		return list;
+	}
+
+
+
+	public List<MemberDTO> updatemember(String num) {
+		// TODO Auto-generated method stub
+		List<MemberDTO> list= dao.updatemember(num);
+		return list;
+	}
 }

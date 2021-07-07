@@ -7,27 +7,27 @@ public class MemberDTO {
 	int staff_no;
 	String staff_name;
 	String gendar;
-	String department;
-	String gradudate_day;
+	String department_name;
+	String graduate_day;
 	
 	public MemberDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberDTO(int staff_no, String staff_name, String gendar, String department, String gradudate_day) {
+	public MemberDTO(int staff_no, String staff_name, String gendar, String department_name, String graduate_day) {
 		super();
 		this.staff_no = staff_no;
 		this.staff_name = staff_name;
 		this.gendar = gendar;
-		this.department = department;
-		this.gradudate_day = gradudate_day;
+		this.department_name = department_name;
+		this.graduate_day = graduate_day;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDTO [staff_no=" + staff_no + ", staff_name=" + staff_name + ", gendar=" + gendar + ", department="
-				+ department + ", gradudate_day=" + gradudate_day + "]";
+		return "MemberDTO [staff_no=" + staff_no + ", staff_name=" + staff_name + ", gendar=" + gendar
+				+ ", department_name=" + department_name + ", graduate_day=" + graduate_day + "]";
 	}
 
 	public int getStaff_no() {
@@ -54,21 +54,22 @@ public class MemberDTO {
 		this.gendar = gendar;
 	}
 
-	public String getDepartment() {
-		return department;
+	public String getDepartment_name() {
+		return department_name;
 	}
 
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
 	}
 
-	public String getGradudate_day() {
-		return gradudate_day;
+	public String getGraduate_day() {
+		return graduate_day;
 	}
 
-	public void setGradudate_day(String gradudate_day) {
-		this.gradudate_day = gradudate_day;
+	public void setGraduate_day(String graduate_day) {
+		this.graduate_day = graduate_day;
 	}
 
+	
 	
 }
