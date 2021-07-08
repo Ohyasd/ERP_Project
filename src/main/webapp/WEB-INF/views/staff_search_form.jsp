@@ -36,9 +36,6 @@
 		
 	});
 	function updateclick(num){
-		//var num = document.getElementById("staff_no").innerText;
-		//var num=$("#staff_no").html();
-	 
         var url= "updatepage?num="+num;
 		var name = "popup update"
 		var option = "width = 900, height=300, top=100,left=200";
@@ -120,7 +117,7 @@
           
  
 <!-- 사원정보 뿌려주기 시작 -->
-
+<c:if test="${list != null}">
 <table border="1" style="margin-top: 30px; height: auto; width: 617px; text-align: center;">
 
 <thead>
@@ -133,7 +130,7 @@
     <th> </th>
   </tr>
 </thead>
-
+</c:if>
 <c:forEach items="${list}" var="list">
 <tbody>
 

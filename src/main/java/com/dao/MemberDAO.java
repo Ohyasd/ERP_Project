@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dto.MemberDTO;
+import com.dto.MemberUpdateDTO;
 
 @Repository
 public class MemberDAO {
@@ -51,9 +52,17 @@ public class MemberDAO {
 
 
 
-	public List<MemberDTO> updatemember(String num) {
+	public List<MemberUpdateDTO> updatemember(String num) {
 		// TODO Auto-generated method stub
-		List<MemberDTO> list=session.selectList("updatemember",num);
+		List<MemberUpdateDTO> list=session.selectList("updatememberselect",num);
 		return list;
+	}
+
+
+
+	public int memberupdate(HashMap<Object, Object> map) {
+		int n=session.update("memberupdate",map);
+		int n2=session.update("staffskillupdate",map);
+		return n;
 	}
 }

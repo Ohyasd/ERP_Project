@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.MemberDAO;
 import com.dto.MemberDTO;
+import com.dto.MemberUpdateDTO;
 
 @Service
 public class MemberService {
@@ -52,9 +53,16 @@ public class MemberService {
 
 
 
-	public List<MemberDTO> updatemember(String num) {
+	public List<MemberUpdateDTO> updatemember(String num) {
 		// TODO Auto-generated method stub
-		List<MemberDTO> list= dao.updatemember(num);
+		List<MemberUpdateDTO> list= dao.updatemember(num);
 		return list;
+	}
+
+
+
+	public int memberupdate(HashMap<Object, Object> map) {
+		int n=dao.memberupdate(map);
+		return n;
 	}
 }

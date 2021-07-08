@@ -3,46 +3,74 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MemberMapper">
-	<select id="memberselect" resultType="MemberDTO" parameterType="map">
-	select staff_no ,staff_name ,
-    CASE
-        WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
-        WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
-    END gendar,
-    cd.department_name department_name,st.graduate_day graduate_day
-FROM staff st,code_department cd where st.department_code=cd.department_code and st.staff_name like '%'||#{name}||'%' and
-st.department_code=#{department} and st.school_code=#{school}  and st.graduate_day=#{date}
+	<select id="memberselect" resultType="MemberDTO"
+		parameterType="map">
+		select staff_no ,staff_name ,
+		CASE
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
+		END gendar,
+		cd.department_name department_name,st.graduate_day graduate_day
+		FROM staff st,code_department cd where
+		st.department_code=cd.department_code and st.staff_name like
+		'%'||#{name}||'%' and
+		st.department_code=#{department} and st.school_code=#{school} and st.graduate_day=#{date}
 	</select>
-	
+
 	<select id="selectall" resultType="MemberDTO">
-	select staff_no ,staff_name,
-    CASE
-        WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
-        WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
-    END gendar,
-    cd.department_name department_name,st.graduate_day graduate_day
-FROM staff st,code_department cd where st.department_code=cd.department_code
-order by staff_no asc
+		select staff_no ,staff_name,
+		CASE
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
+		END gendar,
+		cd.department_name department_name,st.graduate_day graduate_day
+		FROM staff st,code_department cd where
+		st.department_code=cd.department_code
+		order by staff_no asc
 	</select>
-	
-	
+
+
 	<insert id="memberinsert" parameterType="map"> <!-- 멤버정보 insert문 -->
-	insert into 
-	staff(staff_no,staff_name,jumin_no,school_code,department_code,graduate_day)
-     values (STAFF_SEQ.nextval,#{name},#{jumin1}||'-'||#{jumin2},#{school},#{department},#{date})
+		insert into
+		staff(staff_no,staff_name,jumin_no,school_code,department_code,graduate_day)
+		values
+		(STAFF_SEQ.nextval,#{name},#{jumin1}||'-'||#{jumin2},#{school},#{department},#{date})
 	</insert>
-	
-	<select id="selectbystaffno" parameterType="string" resultType="int">
-	select staff_no from staff where staff_name=#{name}
+
+	<select id="selectbystaffno" parameterType="string"
+		resultType="int">
+		select staff_no from staff where staff_name=#{name}
 	</select>
-	
+
 	<insert id="staffskillinsert" parameterType="map">
-	insert into 
-	staff_skill(staff_skill_no,staff_no,skill_code)
-	values (STAFF_SKILL_SEQ.nextval,#{staffno},#{tech})
+		insert into
+		staff_skill(staff_skill_no,staff_no,skill_code)
+		values (STAFF_SKILL_SEQ.nextval,#{staffno},#{tech})
 	</insert>
-	
-	<select id="updatemember" parameterType="int" resultType="memberDTO">
-	
+
+	<select id="updatememberselect" parameterType="string"
+		resultType="MemberUpdateDTO">
+		select st.staff_no,st.staff_name,CASE
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '1', '3', '5', '7', '9' ) THEN '남'
+		WHEN SUBSTR(jumin_no, 8, 1) IN ( '2', '4', '6', '8', '0' ) THEN '여'
+		END gendar,substr(jumin_no,1,6) jumin_no1,substr(jumin_no,8)
+		jumin_no2,cd.department_name,cd.department_code,cs.school_name,ck.skill_name,st.graduate_day
+		from staff st,code_department cd,code_school cs,code_skill
+		ck,staff_skill ss
+		where st.department_code=cd.department_code
+		and st.school_code=cs.school_code
+		and ss.staff_no=st.staff_no
+		and ck.skill_code=ss.skill_code
+		and st.staff_no=#{num}
 	</select>
+
+	<update id="memberupdate" parameterType="map">
+		update staff set
+		staff_name=#{name},jumin_no=#{jumin1}||'-'||#{jumin2},school_code=#{school},department_code=#{department},graduate_day=#{date}
+		where staff_no=#{num}
+	</update>
+
+	<update id="staffskillupdate" parameterType="map">
+		update staff_skill set skill_code=#{tech} where staff_no=#{num}
+	</update>
 </mapper>

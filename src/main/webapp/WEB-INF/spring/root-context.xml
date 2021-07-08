@@ -36,6 +36,7 @@
 		<property name="typeAliases">
 			<list>
 				<value>com.dto.MemberDTO</value>
+				<value>com.dto.MemberUpdateDTO</value>
 			</list>		
 		</property>
 	</bean>	
